@@ -12,8 +12,23 @@ describe DockingStation do
     expect(bike).to respond_to(:working?)
   end
 
-  it { is_expected.to respond_to(:dock).with(1).argument }
+  describe "#dock"
+    it { is_expected.to respond_to(:dock).with(1).argument }
+
+    it "should take a bike and return it" do
+      dock_station = DockingStation.new
+      bike = Bike.new
+      expect(dock_station.dock(bike)).to eq bike
+    end
   
   it { is_expected.to respond_to(:bike) }
+
+  it "can give a bike when asking for a bike" do
+    docking_station = DockingStation.new
+    bike = Bike.new
+    docking_station.dock(bike)
+    expect(docking_station.release_bike).to eq bike
+  end
  
+  
 end
