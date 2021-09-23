@@ -1,14 +1,18 @@
 class DockingStation
-  attr_reader :bike
+  attr_reader :bikes 
+
+  def initialize 
+    @bikes = []
+  end
 
   def dock(bike)
-    raise RuntimeError unless @bike == nil
-    @bike = bike
+    raise RuntimeError if @bikes.length >= 20 
+    @bikes << bike
   end
 
   def release_bike
-    raise RuntimeError.new if @bike == nil 
-    Bike.new
+    raise RuntimeError.new if @bikes.empty?
+    @bikes.pop 
   end
 
 end

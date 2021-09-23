@@ -22,20 +22,19 @@ describe DockingStation do
   describe "#dock" do
     it { is_expected.to respond_to(:dock).with(1).argument }
 
-    it "should take a bike and return it" do
+    it "should take a bike" do
       dock_station = DockingStation.new
       bike = Bike.new
-      expect(dock_station.dock(bike)).to eq bike
+      expect(dock_station.dock(bike)).to eq([bike])
     end
   
-    it { is_expected.to respond_to(:bike) }
+    it { is_expected.to respond_to(:bikes) }
 
-    it "should not accept a bike if theres a bike" do
+    it "should not accept a bike if theres already 20 bikes" do
       dock_station = DockingStation.new
+      20.times {dock_station.dock(Bike.new)}
       bike = Bike.new
-      bike2 = Bike.new
-      dock_station.dock(bike)
-      expect {dock_station.dock(bike2)}.to raise_error RuntimeError
+      expect {dock_station.dock(bike)}.to raise_error RuntimeError
     end
 
     it "can give a bike when asking for a bike" do
