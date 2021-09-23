@@ -2,6 +2,7 @@ class DockingStation
   attr_reader :bike
 
   def dock(bike)
+    raise RuntimeError unless @bike == nil
     @bike = bike
   end
 

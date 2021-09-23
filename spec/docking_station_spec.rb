@@ -10,7 +10,7 @@ describe DockingStation do
 
     it 'should return error if no bike' do
       dock_station = DockingStation.new
-      expect { dock_station.release_bike }.to raise_error
+      expect { dock_station.release_bike }.to raise_error RuntimeError
     end
   end
 
@@ -29,6 +29,14 @@ describe DockingStation do
     end
   
     it { is_expected.to respond_to(:bike) }
+
+    it "should not accept a bike if theres a bike" do
+      dock_station = DockingStation.new
+      bike = Bike.new
+      bike2 = Bike.new
+      dock_station.dock(bike)
+      expect {dock_station.dock(bike2)}.to raise_error RuntimeError
+    end
 
     it "can give a bike when asking for a bike" do
       docking_station = DockingStation.new
