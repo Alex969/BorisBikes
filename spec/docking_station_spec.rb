@@ -1,5 +1,7 @@
 require 'docking_station'
 
+DEFAULT_CAPACITY = 20
+
 describe DockingStation do 
   
   describe "#release_bike" do
@@ -32,7 +34,7 @@ describe DockingStation do
 
     it "should not accept a bike if theres already 20 bikes" do
       dock_station = DockingStation.new
-      20.times {dock_station.dock(Bike.new)}
+      DEFAULT_CAPACITY.times {dock_station.dock(Bike.new)}
       bike = Bike.new
       expect {dock_station.dock(bike)}.to raise_error RuntimeError
     end
