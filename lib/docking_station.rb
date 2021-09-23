@@ -6,9 +6,9 @@ class DockingStation
   end
 
   def release_bike
-    @bike
+    raise RuntimeError.new if @bike == nil 
+    Bike.new
   end
-
 
 end
 

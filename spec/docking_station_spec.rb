@@ -1,10 +1,17 @@
 require 'docking_station'
 
 describe DockingStation do 
+  
+  describe "#release_bike" do
+    it 'expects instances to respond to the release_bike method' do
+      bike = Bike.new
+      expect(DockingStation.new).to respond_to(:release_bike) 
+    end
 
-  it 'expects instances to respond to the release_bike method' do
-    bike = Bike.new
-    expect(DockingStation.new).to respond_to(:release_bike) 
+    it 'should return error if no bike' do
+      dock_station = DockingStation.new
+      expect { dock_station.release_bike }.to raise_error
+    end
   end
 
   it 'adds a bike and expects the bike to work' do
@@ -12,7 +19,7 @@ describe DockingStation do
     expect(bike).to respond_to(:working?)
   end
 
-  describe "#dock"
+  describe "#dock" do
     it { is_expected.to respond_to(:dock).with(1).argument }
 
     it "should take a bike and return it" do
@@ -21,14 +28,13 @@ describe DockingStation do
       expect(dock_station.dock(bike)).to eq bike
     end
   
-  it { is_expected.to respond_to(:bike) }
+    it { is_expected.to respond_to(:bike) }
 
-  it "can give a bike when asking for a bike" do
-    docking_station = DockingStation.new
-    bike = Bike.new
-    docking_station.dock(bike)
-    expect(docking_station.release_bike).to eq bike
+    it "can give a bike when asking for a bike" do
+      docking_station = DockingStation.new
+      bike = Bike.new
+      docking_station.dock(bike)
+      expect(docking_station.release_bike).to eq bike
+    end
   end
- 
-  
 end
