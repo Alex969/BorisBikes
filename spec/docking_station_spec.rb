@@ -48,11 +48,15 @@ describe DockingStation do
   end
 
   
-  it {is_expected.to respond_to(:new).with(1).arguments } # DockingStation.new(235235)
+  #it {is_expected.to respond_to(:new).with(1).arguments } # DockingStation.new(235235)
       
-    
+  it "expects docking station to have a default capacity of 20" do
+    dock_station = DockingStation.new
+    expect(dock_station.capacity).to eq 20 
+  end 
 
-
-
-  
+  it "expects to be able to set passed capacity" do
+    dock_station = DockingStation.new(15)
+    expect(dock_station.capacity).to eq 15
+  end
 end
