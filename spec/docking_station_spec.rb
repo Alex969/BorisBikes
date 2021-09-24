@@ -46,4 +46,13 @@ describe DockingStation do
       expect(docking_station.release_bike).to eq bike
     end
   end
+
+  
+  it {is_expected.to respond_to(:new).with(1).arguments } # DockingStation.new(235235)
+      
+    
+
+
+
+  
 end
