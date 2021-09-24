@@ -18,7 +18,7 @@ describe DockingStation do
 
   it 'adds a bike and expects the bike to work' do
     bike = Bike.new
-    expect(bike).to respond_to(:working?)
+    expect(bike).to respond_to(:broken?)
   end
 
   describe "#dock" do
