@@ -15,9 +15,9 @@ class DockingStation
   end
 
   def release_bike
-    raise RuntimeError.new if empty?
-    bikes.each {|bike| return bike if !bike.broken? }
-    raise RuntimeError.new 
+    raise "Empty dock" if empty?
+    bikes.each_with_index {|bike, index| bikes.delete_at(index); return bike if !bike.broken? }
+    raise "Reminding bike(s) are broken" 
   end
 
   private

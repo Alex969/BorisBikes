@@ -12,7 +12,7 @@ describe DockingStation do
 
     it 'should return error if no bike' do
       dock_station = DockingStation.new
-      expect { dock_station.release_bike }.to raise_error RuntimeError
+      expect { dock_station.release_bike }.to raise_error 'Empty dock'
     end
 
     it 'should return error if bike is broken' do
@@ -20,7 +20,7 @@ describe DockingStation do
       bike = Bike.new
       bike.report_broken
       dock_station.dock(bike)
-      expect { dock_station.release_bike }.to raise_error RuntimeError
+      expect { dock_station.release_bike }.to raise_error 'Reminding bike(s) are broken'
     end
   end
 
