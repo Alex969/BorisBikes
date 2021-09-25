@@ -10,7 +10,7 @@ class DockingStation
   end
 
   def dock(bike)
-    raise RuntimeError if full? 
+    raise "Full dock" if full? 
     @bikes << bike
   end
 

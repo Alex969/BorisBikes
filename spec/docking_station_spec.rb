@@ -44,7 +44,7 @@ describe DockingStation do
       dock_station = DockingStation.new
       DEFAULT_CAPACITY.times {dock_station.dock(Bike.new)}
       bike = Bike.new
-      expect {dock_station.dock(bike)}.to raise_error RuntimeError
+      expect {dock_station.dock(bike)}.to raise_error 'Full dock'
     end
 
     it "can give a bike when asking for a bike" do
