@@ -14,6 +14,14 @@ describe DockingStation do
       dock_station = DockingStation.new
       expect { dock_station.release_bike }.to raise_error RuntimeError
     end
+
+    it 'should return error if bike is broken' do
+      dock_station = DockingStation.new
+      bike = Bike.new
+      bike.report_broken
+      dock_station.dock(bike)
+      expect { dock_station.release_bike }.to raise_error RuntimeError
+    end
   end
 
   it 'adds a bike and expects the bike to work' do

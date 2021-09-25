@@ -1,3 +1,5 @@
+require './lib/bike.rb'
+
 class DockingStation
   attr_reader :bikes, :capacity
   DEFAULT_CAPACITY = 20
@@ -14,7 +16,8 @@ class DockingStation
 
   def release_bike
     raise RuntimeError.new if empty?
-    @bikes.pop 
+    bikes.each {|bike| return bike if !bike.broken? }
+    raise RuntimeError.new 
   end
 
   private
