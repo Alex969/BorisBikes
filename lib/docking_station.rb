@@ -1,4 +1,4 @@
-require './lib/bike.rb'
+require_relative 'bike'
 
 class DockingStation
   attr_reader :bikes, :capacity
@@ -22,7 +22,7 @@ class DockingStation
 
   private
   def full?
-    @bikes.length >= DEFAULT_CAPACITY
+    @bikes.length >= capacity
   end
 
   def empty?

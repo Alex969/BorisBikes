@@ -1,7 +1,5 @@
 require 'docking_station'
 
-DEFAULT_CAPACITY = 20
-
 describe DockingStation do 
   
   describe "#release_bike" do
@@ -11,16 +9,14 @@ describe DockingStation do
     end
 
     it 'should return error if no bike' do
-      dock_station = DockingStation.new
-      expect { dock_station.release_bike }.to raise_error 'Empty dock'
+      expect { subject.release_bike }.to raise_error 'Empty dock'
     end
 
     it 'should return error if bike is broken' do
-      dock_station = DockingStation.new
       bike = Bike.new
       bike.report_broken
-      dock_station.dock(bike)
-      expect { dock_station.release_bike }.to raise_error 'Reminding bike(s) are broken'
+      subject.dock(bike)
+      expect { subject.release_bike }.to raise_error 'Reminding bike(s) are broken'
     end
   end
 
@@ -33,34 +29,27 @@ describe DockingStation do
     it { is_expected.to respond_to(:dock).with(1).argument }
 
     it "should take a bike" do
-      dock_station = DockingStation.new
       bike = Bike.new
-      expect(dock_station.dock(bike)).to eq([bike])
+      expect(subject.dock(bike)).to eq([bike])
     end
   
     it { is_expected.to respond_to(:bikes) }
 
     it "should not accept a bike if theres already 20 bikes" do
-      dock_station = DockingStation.new
-      DEFAULT_CAPACITY.times {dock_station.dock(Bike.new)}
+      DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)}
       bike = Bike.new
-      expect {dock_station.dock(bike)}.to raise_error 'Full dock'
+      expect {subject.dock(bike)}.to raise_error 'Full dock'
     end
 
     it "can give a bike when asking for a bike" do
-      docking_station = DockingStation.new
       bike = Bike.new
-      docking_station.dock(bike)
-      expect(docking_station.release_bike).to eq bike
+      subject.dock(bike)
+      expect(subject.release_bike).to eq bike
     end
   end
-
-  
-  #it {is_expected.to respond_to(:new).with(1).arguments } # DockingStation.new(235235)
       
   it "expects docking station to have a default capacity of 20" do
-    dock_station = DockingStation.new
-    expect(dock_station.capacity).to eq 20 
+    expect(subject.capacity).to eq 20 
   end 
 
   it "expects to be able to set passed capacity" do
