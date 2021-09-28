@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.org/{Alex969}/{BorisBikes}.png?branch=master)](https://travis-ci.org/{Alex969}/{BorisBikes})
+https://img.shields.io/circleci/build/github/Alex969/BorisBikes/main?style=plastic
